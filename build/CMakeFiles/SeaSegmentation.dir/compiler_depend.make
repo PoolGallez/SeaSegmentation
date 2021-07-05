@@ -360,8 +360,28 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
   /usr/include/asm-generic/posix_types.h \
   /usr/include/bits/statx-generic.h \
   /usr/include/bits/types/struct_statx_timestamp.h \
-  /usr/include/bits/types/struct_statx.h
+  /usr/include/bits/types/struct_statx.h \
+  ../libs/graph-segmentation/image.h \
+  ../libs/graph-segmentation/misc.h \
+  ../libs/graph-segmentation/pnmfile.h \
+  ../libs/graph-segmentation/image.h \
+  ../libs/graph-segmentation/misc.h \
+  ../libs/graph-segmentation/segment-image.h \
+  ../libs/graph-segmentation/filter.h \
+  ../libs/graph-segmentation/convolve.h \
+  ../libs/graph-segmentation/imconv.h \
+  ../libs/graph-segmentation/imutil.h \
+  ../libs/graph-segmentation/segment-graph.h \
+  ../libs/graph-segmentation/disjoint-set.h
 
+
+../libs/graph-segmentation/imutil.h:
+
+../libs/graph-segmentation/convolve.h:
+
+../libs/graph-segmentation/segment-image.h:
+
+../libs/graph-segmentation/misc.h:
 
 /usr/include/bits/types/struct_statx.h:
 
@@ -481,6 +501,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/opencv4/opencv2/core/mat.inl.hpp:
 
+../libs/graph-segmentation/disjoint-set.h:
+
 /usr/include/opencv4/opencv2/core/bufferpool.hpp:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/float.h:
@@ -580,6 +602,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11.1.0/limits:
 
 /usr/include/c++/11.1.0/bits/std_function.h:
+
+../libs/graph-segmentation/segment-graph.h:
 
 /usr/include/bits/types/wint_t.h:
 
@@ -713,7 +737,11 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/opencv4/opencv2/opencv_modules.hpp:
 
+../libs/graph-segmentation/image.h:
+
 /usr/include/c++/11.1.0/bits/char_traits.h:
+
+../libs/graph-segmentation/imconv.h:
 
 /usr/include/opencv4/opencv2/core/mat.hpp:
 
@@ -961,6 +989,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/opencv4/opencv2/core/neon_utils.hpp:
 
+../libs/graph-segmentation/filter.h:
+
 /usr/include/sys/single_threaded.h:
 
 /usr/include/c++/11.1.0/string_view:
@@ -1028,6 +1058,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/endian.h:
 
 /usr/include/c++/11.1.0/tr1/poly_laguerre.tcc:
+
+../libs/graph-segmentation/pnmfile.h:
 
 /usr/include/bits/types/struct_statx_timestamp.h:
 
