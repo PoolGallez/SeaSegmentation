@@ -4,3 +4,6 @@
 /home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/graph-segmentation/CMakeFiles/edit_cache.dir
 /home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/graph-segmentation/CMakeFiles/rebuild_cache.dir
 /home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir
+/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/lbp/CMakeFiles/rebuild_cache.dir
+/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/lbp/CMakeFiles/edit_cache.dir
+/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/lbp/CMakeFiles/LBP.dir

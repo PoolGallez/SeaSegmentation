@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 #include <image.h>
 #include <misc.h>
 #include <pnmfile.h>
+#include <vector>
+#include <opencv2/core.hpp>
 #include "segment-image.h"
 
 int main(int argc, char **argv) {
@@ -38,7 +40,8 @@ int main(int argc, char **argv) {
 	
   printf("processing\n");
   int num_ccs; 
-  image<rgb> *seg = segment_image(input, sigma, k, min_size, &num_ccs); 
+  std::vector<cv::Mat> masks;
+  image<rgb> *seg = segment_image(input, sigma, k, min_size, &num_ccs,&masks); 
   savePPM(seg, argv[5]);
 
   printf("got %d components\n", num_ccs);

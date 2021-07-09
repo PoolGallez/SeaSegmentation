@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLBP.a CMakeFiles/LBP.dir/lbp.cpp.o
+/usr/bin/ranlib libLBP.a

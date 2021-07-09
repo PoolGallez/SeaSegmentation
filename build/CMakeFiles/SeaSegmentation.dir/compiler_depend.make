@@ -372,7 +372,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
   ../libs/graph-segmentation/imconv.h \
   ../libs/graph-segmentation/imutil.h \
   ../libs/graph-segmentation/segment-graph.h \
-  ../libs/graph-segmentation/disjoint-set.h
+  ../libs/graph-segmentation/disjoint-set.h \
+  ../libs/lbp/lbp.hpp
 
 
 ../libs/graph-segmentation/imutil.h:
@@ -956,6 +957,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/stdlib-float.h:
 
 /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/gthr-default.h:
+
+../libs/lbp/lbp.hpp:
 
 /usr/include/bits/types/__FILE.h:
 

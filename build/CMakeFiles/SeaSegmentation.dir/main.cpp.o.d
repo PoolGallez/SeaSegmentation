@@ -285,4 +285,5 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/imconv.h \
  /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/imutil.h \
  /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/segment-graph.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/disjoint-set.h
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/disjoint-set.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/lbp/lbp.hpp

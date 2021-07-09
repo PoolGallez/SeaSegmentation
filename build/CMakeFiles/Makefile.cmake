@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.20.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.5/CMakeSystem.cmake"
   "../libs/graph-segmentation/CMakeLists.txt"
+  "../libs/lbp/CMakeLists.txt"
   "/usr/lib64/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/lib64/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/lib64/cmake/opencv4/OpenCVModules-release.cmake"
@@ -47,10 +48,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/graph-segmentation/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libs/lbp/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/SeaSegmentation.dir/DependInfo.cmake"
   "libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/DependInfo.cmake"
+  "libs/lbp/CMakeFiles/LBP.dir/DependInfo.cmake"
   )

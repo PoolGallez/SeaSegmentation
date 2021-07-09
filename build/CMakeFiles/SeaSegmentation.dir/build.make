@@ -93,6 +93,7 @@ SeaSegmentation_EXTERNAL_OBJECTS =
 SeaSegmentation: CMakeFiles/SeaSegmentation.dir/main.cpp.o
 SeaSegmentation: CMakeFiles/SeaSegmentation.dir/build.make
 SeaSegmentation: libs/graph-segmentation/libGraphSegmentation.a
+SeaSegmentation: libs/lbp/libLBP.a
 SeaSegmentation: /usr/lib/libopencv_gapi.so.4.5.2
 SeaSegmentation: /usr/lib/libopencv_stitching.so.4.5.2
 SeaSegmentation: /usr/lib/libopencv_alphamat.so.4.5.2

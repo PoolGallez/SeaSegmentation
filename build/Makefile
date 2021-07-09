@@ -142,6 +142,19 @@ GraphSegmentation/fast:
 	$(MAKE) $(MAKESILENT) -f libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/build.make libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/build
 .PHONY : GraphSegmentation/fast
 
+#=============================================================================
+# Target rules for targets named LBP
+
+# Build rule for target.
+LBP: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 LBP
+.PHONY : LBP
+
+# fast build rule for target.
+LBP/fast:
+	$(MAKE) $(MAKESILENT) -f libs/lbp/CMakeFiles/LBP.dir/build.make libs/lbp/CMakeFiles/LBP.dir/build
+.PHONY : LBP/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -175,6 +188,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GraphSegmentation"
+	@echo "... LBP"
 	@echo "... SeaSegmentation"
 	@echo "... main.o"
 	@echo "... main.i"
