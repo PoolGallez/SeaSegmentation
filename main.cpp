@@ -34,6 +34,7 @@
 #include <misc.h>
 #include <pnmfile.h>
 #include "segment-image.h"
+#include "FeatureExtractor.h"
 
 //LBP descriptor
 #include "lbp.hpp"
@@ -417,7 +418,7 @@ int main()
     int radius = 4;
     int neighbors = 16;
 
-    image<rgb> *input = loadPPM("../blue-boat-freedom-horizon-ocean-2878.ppm");
+    image<rgb> *input = loadPPM("../boat-ferry-departure-crossing-sea-2733061.ppm");
 
     cout << "Start processing the image.. " << endl;
     int num_ccs;
@@ -483,7 +484,7 @@ int main()
     }
     else
     {
-        Mat testSegmentation = imread("../blue-boat-freedom-horizon-ocean-2878.ppm", IMREAD_GRAYSCALE);
+        Mat testSegmentation = imread("../boat-ferry-departure-crossing-sea-2733061.ppm", IMREAD_GRAYSCALE);
         imshow("input image", testSegmentation);
         Mat img = convertNativeToMat(seg);
         imshow("Segmentation Result", img);

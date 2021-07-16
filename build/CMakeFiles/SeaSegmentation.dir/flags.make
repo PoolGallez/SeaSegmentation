@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/libs/graph-segmentation" -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/libs/lbp" -isystem /usr/include/opencv4
+CXX_INCLUDES = -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/libs/graph-segmentation" -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/libs/lbp" -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/classes/FeatureExtractor" -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/classes/ImageLoader" -I"/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/classes/BagOfWords" -isystem /usr/include/opencv4
 
 CXX_FLAGS = 
 

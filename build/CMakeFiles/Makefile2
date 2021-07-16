@@ -66,18 +66,72 @@ CMAKE_BINARY_DIR = "/home/pool/Documents/Magistrale/Computer Vision/Boat Detecti
 all: CMakeFiles/SeaSegmentation.dir/all
 all: libs/graph-segmentation/all
 all: libs/lbp/all
+all: classes/FeatureExtractor/all
+all: classes/ImageLoader/all
+all: classes/BagOfWords/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: libs/graph-segmentation/preinstall
 preinstall: libs/lbp/preinstall
+preinstall: classes/FeatureExtractor/preinstall
+preinstall: classes/ImageLoader/preinstall
+preinstall: classes/BagOfWords/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/SeaSegmentation.dir/clean
 clean: libs/graph-segmentation/clean
 clean: libs/lbp/clean
+clean: classes/FeatureExtractor/clean
+clean: classes/ImageLoader/clean
+clean: classes/BagOfWords/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory classes/BagOfWords
+
+# Recursive "all" directory target.
+classes/BagOfWords/all: classes/BagOfWords/CMakeFiles/BagOfWords.dir/all
+.PHONY : classes/BagOfWords/all
+
+# Recursive "preinstall" directory target.
+classes/BagOfWords/preinstall:
+.PHONY : classes/BagOfWords/preinstall
+
+# Recursive "clean" directory target.
+classes/BagOfWords/clean: classes/BagOfWords/CMakeFiles/BagOfWords.dir/clean
+.PHONY : classes/BagOfWords/clean
+
+#=============================================================================
+# Directory level rules for directory classes/FeatureExtractor
+
+# Recursive "all" directory target.
+classes/FeatureExtractor/all: classes/FeatureExtractor/CMakeFiles/Extractor.dir/all
+.PHONY : classes/FeatureExtractor/all
+
+# Recursive "preinstall" directory target.
+classes/FeatureExtractor/preinstall:
+.PHONY : classes/FeatureExtractor/preinstall
+
+# Recursive "clean" directory target.
+classes/FeatureExtractor/clean: classes/FeatureExtractor/CMakeFiles/Extractor.dir/clean
+.PHONY : classes/FeatureExtractor/clean
+
+#=============================================================================
+# Directory level rules for directory classes/ImageLoader
+
+# Recursive "all" directory target.
+classes/ImageLoader/all: classes/ImageLoader/CMakeFiles/ImageLoader.dir/all
+.PHONY : classes/ImageLoader/all
+
+# Recursive "preinstall" directory target.
+classes/ImageLoader/preinstall:
+.PHONY : classes/ImageLoader/preinstall
+
+# Recursive "clean" directory target.
+classes/ImageLoader/clean: classes/ImageLoader/CMakeFiles/ImageLoader.dir/clean
+.PHONY : classes/ImageLoader/clean
 
 #=============================================================================
 # Directory level rules for directory libs/graph-segmentation
@@ -115,14 +169,17 @@ libs/lbp/clean: libs/lbp/CMakeFiles/LBP.dir/clean
 # All Build rule for target.
 CMakeFiles/SeaSegmentation.dir/all: libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/all
 CMakeFiles/SeaSegmentation.dir/all: libs/lbp/CMakeFiles/LBP.dir/all
+CMakeFiles/SeaSegmentation.dir/all: classes/FeatureExtractor/CMakeFiles/Extractor.dir/all
+CMakeFiles/SeaSegmentation.dir/all: classes/ImageLoader/CMakeFiles/ImageLoader.dir/all
+CMakeFiles/SeaSegmentation.dir/all: classes/BagOfWords/CMakeFiles/BagOfWords.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SeaSegmentation.dir/build.make CMakeFiles/SeaSegmentation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SeaSegmentation.dir/build.make CMakeFiles/SeaSegmentation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=5,6 "Built target SeaSegmentation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=11,12 "Built target SeaSegmentation"
 .PHONY : CMakeFiles/SeaSegmentation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SeaSegmentation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 6
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SeaSegmentation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 0
 .PHONY : CMakeFiles/SeaSegmentation.dir/rule
@@ -143,7 +200,7 @@ CMakeFiles/SeaSegmentation.dir/clean:
 libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/all:
 	$(MAKE) $(MAKESILENT) -f libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/build.make libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/depend
 	$(MAKE) $(MAKESILENT) -f libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/build.make libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=1,2 "Built target GraphSegmentation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=5,6 "Built target GraphSegmentation"
 .PHONY : libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/all
 
 # Build rule for subdir invocation for target.
@@ -169,7 +226,7 @@ libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/clean:
 libs/lbp/CMakeFiles/LBP.dir/all:
 	$(MAKE) $(MAKESILENT) -f libs/lbp/CMakeFiles/LBP.dir/build.make libs/lbp/CMakeFiles/LBP.dir/depend
 	$(MAKE) $(MAKESILENT) -f libs/lbp/CMakeFiles/LBP.dir/build.make libs/lbp/CMakeFiles/LBP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=3,4 "Built target LBP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=9,10 "Built target LBP"
 .PHONY : libs/lbp/CMakeFiles/LBP.dir/all
 
 # Build rule for subdir invocation for target.
@@ -187,6 +244,84 @@ LBP: libs/lbp/CMakeFiles/LBP.dir/rule
 libs/lbp/CMakeFiles/LBP.dir/clean:
 	$(MAKE) $(MAKESILENT) -f libs/lbp/CMakeFiles/LBP.dir/build.make libs/lbp/CMakeFiles/LBP.dir/clean
 .PHONY : libs/lbp/CMakeFiles/LBP.dir/clean
+
+#=============================================================================
+# Target rules for target classes/FeatureExtractor/CMakeFiles/Extractor.dir
+
+# All Build rule for target.
+classes/FeatureExtractor/CMakeFiles/Extractor.dir/all:
+	$(MAKE) $(MAKESILENT) -f classes/FeatureExtractor/CMakeFiles/Extractor.dir/build.make classes/FeatureExtractor/CMakeFiles/Extractor.dir/depend
+	$(MAKE) $(MAKESILENT) -f classes/FeatureExtractor/CMakeFiles/Extractor.dir/build.make classes/FeatureExtractor/CMakeFiles/Extractor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=3,4 "Built target Extractor"
+.PHONY : classes/FeatureExtractor/CMakeFiles/Extractor.dir/all
+
+# Build rule for subdir invocation for target.
+classes/FeatureExtractor/CMakeFiles/Extractor.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 classes/FeatureExtractor/CMakeFiles/Extractor.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 0
+.PHONY : classes/FeatureExtractor/CMakeFiles/Extractor.dir/rule
+
+# Convenience name for target.
+Extractor: classes/FeatureExtractor/CMakeFiles/Extractor.dir/rule
+.PHONY : Extractor
+
+# clean rule for target.
+classes/FeatureExtractor/CMakeFiles/Extractor.dir/clean:
+	$(MAKE) $(MAKESILENT) -f classes/FeatureExtractor/CMakeFiles/Extractor.dir/build.make classes/FeatureExtractor/CMakeFiles/Extractor.dir/clean
+.PHONY : classes/FeatureExtractor/CMakeFiles/Extractor.dir/clean
+
+#=============================================================================
+# Target rules for target classes/ImageLoader/CMakeFiles/ImageLoader.dir
+
+# All Build rule for target.
+classes/ImageLoader/CMakeFiles/ImageLoader.dir/all:
+	$(MAKE) $(MAKESILENT) -f classes/ImageLoader/CMakeFiles/ImageLoader.dir/build.make classes/ImageLoader/CMakeFiles/ImageLoader.dir/depend
+	$(MAKE) $(MAKESILENT) -f classes/ImageLoader/CMakeFiles/ImageLoader.dir/build.make classes/ImageLoader/CMakeFiles/ImageLoader.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=7,8 "Built target ImageLoader"
+.PHONY : classes/ImageLoader/CMakeFiles/ImageLoader.dir/all
+
+# Build rule for subdir invocation for target.
+classes/ImageLoader/CMakeFiles/ImageLoader.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 classes/ImageLoader/CMakeFiles/ImageLoader.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 0
+.PHONY : classes/ImageLoader/CMakeFiles/ImageLoader.dir/rule
+
+# Convenience name for target.
+ImageLoader: classes/ImageLoader/CMakeFiles/ImageLoader.dir/rule
+.PHONY : ImageLoader
+
+# clean rule for target.
+classes/ImageLoader/CMakeFiles/ImageLoader.dir/clean:
+	$(MAKE) $(MAKESILENT) -f classes/ImageLoader/CMakeFiles/ImageLoader.dir/build.make classes/ImageLoader/CMakeFiles/ImageLoader.dir/clean
+.PHONY : classes/ImageLoader/CMakeFiles/ImageLoader.dir/clean
+
+#=============================================================================
+# Target rules for target classes/BagOfWords/CMakeFiles/BagOfWords.dir
+
+# All Build rule for target.
+classes/BagOfWords/CMakeFiles/BagOfWords.dir/all:
+	$(MAKE) $(MAKESILENT) -f classes/BagOfWords/CMakeFiles/BagOfWords.dir/build.make classes/BagOfWords/CMakeFiles/BagOfWords.dir/depend
+	$(MAKE) $(MAKESILENT) -f classes/BagOfWords/CMakeFiles/BagOfWords.dir/build.make classes/BagOfWords/CMakeFiles/BagOfWords.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" --progress-num=1,2 "Built target BagOfWords"
+.PHONY : classes/BagOfWords/CMakeFiles/BagOfWords.dir/all
+
+# Build rule for subdir invocation for target.
+classes/BagOfWords/CMakeFiles/BagOfWords.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 classes/BagOfWords/CMakeFiles/BagOfWords.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles" 0
+.PHONY : classes/BagOfWords/CMakeFiles/BagOfWords.dir/rule
+
+# Convenience name for target.
+BagOfWords: classes/BagOfWords/CMakeFiles/BagOfWords.dir/rule
+.PHONY : BagOfWords
+
+# clean rule for target.
+classes/BagOfWords/CMakeFiles/BagOfWords.dir/clean:
+	$(MAKE) $(MAKESILENT) -f classes/BagOfWords/CMakeFiles/BagOfWords.dir/build.make classes/BagOfWords/CMakeFiles/BagOfWords.dir/clean
+.PHONY : classes/BagOfWords/CMakeFiles/BagOfWords.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

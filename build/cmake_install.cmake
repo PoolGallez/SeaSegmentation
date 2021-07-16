@@ -46,6 +46,9 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/graph-segmentation/cmake_install.cmake")
   include("/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/lbp/cmake_install.cmake")
+  include("/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/FeatureExtractor/cmake_install.cmake")
+  include("/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/ImageLoader/cmake_install.cmake")
+  include("/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/BagOfWords/cmake_install.cmake")
 
 endif()
 

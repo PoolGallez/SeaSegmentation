@@ -155,6 +155,45 @@ LBP/fast:
 	$(MAKE) $(MAKESILENT) -f libs/lbp/CMakeFiles/LBP.dir/build.make libs/lbp/CMakeFiles/LBP.dir/build
 .PHONY : LBP/fast
 
+#=============================================================================
+# Target rules for targets named Extractor
+
+# Build rule for target.
+Extractor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Extractor
+.PHONY : Extractor
+
+# fast build rule for target.
+Extractor/fast:
+	$(MAKE) $(MAKESILENT) -f classes/FeatureExtractor/CMakeFiles/Extractor.dir/build.make classes/FeatureExtractor/CMakeFiles/Extractor.dir/build
+.PHONY : Extractor/fast
+
+#=============================================================================
+# Target rules for targets named ImageLoader
+
+# Build rule for target.
+ImageLoader: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ImageLoader
+.PHONY : ImageLoader
+
+# fast build rule for target.
+ImageLoader/fast:
+	$(MAKE) $(MAKESILENT) -f classes/ImageLoader/CMakeFiles/ImageLoader.dir/build.make classes/ImageLoader/CMakeFiles/ImageLoader.dir/build
+.PHONY : ImageLoader/fast
+
+#=============================================================================
+# Target rules for targets named BagOfWords
+
+# Build rule for target.
+BagOfWords: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 BagOfWords
+.PHONY : BagOfWords
+
+# fast build rule for target.
+BagOfWords/fast:
+	$(MAKE) $(MAKESILENT) -f classes/BagOfWords/CMakeFiles/BagOfWords.dir/build.make classes/BagOfWords/CMakeFiles/BagOfWords.dir/build
+.PHONY : BagOfWords/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -187,7 +226,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... BagOfWords"
+	@echo "... Extractor"
 	@echo "... GraphSegmentation"
+	@echo "... ImageLoader"
 	@echo "... LBP"
 	@echo "... SeaSegmentation"
 	@echo "... main.o"

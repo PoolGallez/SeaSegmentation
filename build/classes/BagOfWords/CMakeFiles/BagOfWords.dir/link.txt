@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBagOfWords.a CMakeFiles/BagOfWords.dir/BagOfWords.cpp.o
+/usr/bin/ranlib libBagOfWords.a

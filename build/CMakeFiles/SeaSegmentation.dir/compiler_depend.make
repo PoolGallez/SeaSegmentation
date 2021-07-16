@@ -373,6 +373,7 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
   ../libs/graph-segmentation/imutil.h \
   ../libs/graph-segmentation/segment-graph.h \
   ../libs/graph-segmentation/disjoint-set.h \
+  ../classes/FeatureExtractor/FeatureExtractor.h \
   ../libs/lbp/lbp.hpp
 
 
@@ -971,6 +972,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/cpu-set.h:
 
 /usr/include/time.h:
+
+../classes/FeatureExtractor/FeatureExtractor.h:
 
 /usr/include/opencv4/opencv2/core.hpp:
 
