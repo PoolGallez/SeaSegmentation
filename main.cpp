@@ -48,7 +48,7 @@ using namespace lbp;
 const string TRAIN_DIR = "../training";
 const string WATER_DIR = "/water/";
 const string NON_WATER_DIR = "/non_water/";
-const int CLUSTER_COUNT = 160; // 80 words per class
+const int CLUSTER_COUNT = 200; // 80 words per class
 
 const int WATER_CLASS = 1;
 const int NON_WATER_CLASS = -1;
@@ -79,6 +79,7 @@ void descriptorsExtraction(vector<Mat> waterImages, vector<Mat> nonWaterImages, 
     int minHessian = 100;
     Ptr<SIFT> detector = SIFT::create();
     int i = 0;
+    cout << "* Extraction from water images" << endl;
     for (Mat image : waterImages)
     {
         vector<KeyPoint> keypoints;
@@ -92,12 +93,13 @@ void descriptorsExtraction(vector<Mat> waterImages, vector<Mat> nonWaterImages, 
         }
         else
         {
-            cout << "Index " << i << " has an empty descriptor, removing the image" << endl;
+            cout << "Index " << i << " has an empty descriptor water, removing the image" << endl;
             waterImages.erase(waterImages.begin() + i);
         }
         i++;
     }
     i = 0;
+    cout << "* Extraction from non water images" << endl;
     for (Mat image : nonWaterImages)
     {
         vector<KeyPoint> keypoints;
@@ -111,7 +113,7 @@ void descriptorsExtraction(vector<Mat> waterImages, vector<Mat> nonWaterImages, 
         }
         else
         {
-            cout << "Index " << i << " has an empty descriptor, removing the image" << endl;
+            cout << "Index " << i << " has an empty non water descriptor, removing the image" << endl;
             nonWaterImages.erase(nonWaterImages.begin() + i);
         }
         i++;
@@ -119,20 +121,21 @@ void descriptorsExtraction(vector<Mat> waterImages, vector<Mat> nonWaterImages, 
     cout << "*** Feature Extracted" << endl;
 }
 
-void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImages, vector<Mat> *waterDescriptors,
-                              vector<Mat> *nonWaterDescriptors,
+void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImages, int *waterDescriptorsNumber,
+                              int *nonWaterDescriptorsNumber,
                               Mat *totalDescriptors)
 {
     cout << "*** Feature Extraction LBP" << endl;
     Ptr<SIFT> detector = SIFT::create();
     int i = 0;
+    int waterDescNumb, nonWaterDescNumb;
     try
     {
         for (Mat image : waterImages)
         {
             if (image.empty())
             {
-                cout << "Index "<< i << "empty image, removing it " << endl;
+                cout << "Index " << i << "empty image, removing it " << endl;
                 waterImages.erase(waterImages.begin() + i);
             }
             else
@@ -147,17 +150,14 @@ void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImage
                 detector->compute(image, keypoints, descriptors);
                 if (!descriptors.empty())
                 {
-                    waterDescriptors->push_back(descriptors);
                     totalDescriptors->push_back(descriptors);
-                }
-                else
-                {
-                    cout << "Index " << i << " has an empty descriptor, removing the image" << endl;
-                    waterImages.erase(waterImages.begin() + i);
                 }
                 i++;
             }
         }
+
+        waterImages.clear();
+        waterDescNumb = i;
         i = 0;
         for (Mat image : nonWaterImages)
         {
@@ -170,17 +170,15 @@ void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImage
             detector->compute(image, keypoints, descriptors);
             if (!descriptors.empty())
             {
-                nonWaterDescriptors->push_back(descriptors);
                 totalDescriptors->push_back(descriptors);
-            }
-            else
-            {
-                cout << "Index " << i << " has an empty descriptor, removing the image" << endl;
-                nonWaterImages.erase(nonWaterImages.begin() + i);
             }
             i++;
         }
         cout << "*** Feature Extracted LBP" << endl;
+        nonWaterImages.clear();
+        nonWaterDescNumb = i;
+        *nonWaterDescriptorsNumber = nonWaterDescNumb;
+        *waterDescriptorsNumber = waterDescNumb;
     }
     catch (cv::Exception e)
     {
@@ -192,28 +190,106 @@ void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImage
 
 void computeHistograms(Mat *histograms, Mat *labels, vector<Mat> waterDescriptors, vector<Mat> nonWaterDescriptors, BOWImgDescriptorExtractor bowDE)
 {
-    cout << "=================== Histogram Computed ===================" << endl;
+    cout << "=================== Histogram Computation ===================" << endl;
     cout << "*** Histogram Computation for water images " << endl;
     int minHessian = 100;
     Mat labelsMat;
+    int i = 0;
+    try
+    {
 
-    for (Mat waterDescriptor : waterDescriptors)
-    {
-        Mat histogram;
-        bowDE.compute(waterDescriptor, histogram);
-        histograms->push_back(histogram);
-        labelsMat.push_back(Mat(1, 1, CV_32SC1, WATER_CLASS));
+        for (Mat waterDescriptor : waterDescriptors)
+        {
+            Mat histogram;
+            bowDE.compute(waterDescriptor, histogram);
+            histograms->push_back(histogram);
+            labelsMat.push_back(Mat(1, 1, CV_32SC1, WATER_CLASS));
+            i++;
+        }
+        waterDescriptors.clear();
+        cout << "*** Histogram Computation for non water images " << endl;
+        for (Mat nonWaterDescriptor : nonWaterDescriptors)
+        {
+            Mat histogram;
+            bowDE.compute(nonWaterDescriptor, histogram);
+            histograms->push_back(histogram);
+            labelsMat.push_back(Mat(1, 1, CV_32SC1, NON_WATER_CLASS));
+            //cout << histogram.type()<<endl;
+        }
+        nonWaterDescriptors.clear();
+        *labels = labelsMat;
     }
+    catch (cv::Exception e)
+    {
+        cout << "Ho avuto problemi " << i << endl;
+        cout << waterDescriptors[i].type() << endl;
+        cout << e.what() << endl;
+        cout << waterDescriptors[i].size() << endl;
+    }
+
+    cout << "=================== Histogram Computed ===================" << endl;
+}
+
+void computeHistogramsLBP(Mat *histograms, Mat *labels, vector<Mat> waterImages, vector<Mat> nonWaterImages, BOWImgDescriptorExtractor bowDE)
+{
+    cout << "=================== Histogram Computed ===================" << endl;
+    cout << "*** Histogram Computation for water images " << endl;
+    Ptr<SIFT> detector = SIFT::create();
+    Mat labelsMat;
+    int count = 0;
+    for (Mat waterImage : waterImages)
+    {
+        GaussianBlur(waterImage, waterImage, Size(7, 7), 5, 3, BORDER_CONSTANT); // tiny bit of smoothing is always a good idea
+        waterImage = lbp::ELBP(waterImage);
+        normalize(waterImage, waterImage, 0, 255, NORM_MINMAX, CV_8UC1);
+        vector<KeyPoint> keypoints;
+        Mat waterDescriptor;
+        detector->detect(waterImage, keypoints);
+        detector->compute(waterImage, keypoints, waterDescriptor);
+        Mat histogram;
+        if (!waterDescriptor.empty())
+        {
+            bowDE.compute(waterDescriptor, histogram);
+            histograms->push_back(histogram);
+            count++;
+            labelsMat.push_back(Mat(1, 1, CV_32SC1, WATER_CLASS));
+        }
+        else
+        {
+            cout << "Empty water descriptor" << endl;
+        }
+        keypoints.clear();
+        waterDescriptor.release();
+    }
+    waterImages.clear();
     cout << "*** Histogram Computation for non water images " << endl;
-    for (Mat nonWaterDescriptor : nonWaterDescriptors)
+    for (Mat nonWaterImage : nonWaterImages)
     {
+        GaussianBlur(nonWaterImage, nonWaterImage, Size(7, 7), 5, 3, BORDER_CONSTANT); // tiny bit of smoothing is always a good idea
+        nonWaterImage = lbp::ELBP(nonWaterImage);
+        normalize(nonWaterImage, nonWaterImage, 0, 255, NORM_MINMAX, CV_8UC1);
+        vector<KeyPoint> keypoints;
+        Mat nonWaterDescriptor;
+        detector->detect(nonWaterImage, keypoints);
+        detector->compute(nonWaterImage, keypoints, nonWaterDescriptor);
         Mat histogram;
-        bowDE.compute(nonWaterDescriptor, histogram);
-        histograms->push_back(histogram);
-        labelsMat.push_back(Mat(1, 1, CV_32SC1, NON_WATER_CLASS));
-        //cout << histogram.type()<<endl;
+        if (!nonWaterDescriptor.empty())
+        {
+            bowDE.compute(nonWaterDescriptor, histogram);
+            histograms->push_back(histogram);
+            count++;
+            labelsMat.push_back(Mat(1, 1, CV_32SC1, NON_WATER_CLASS));
+        }
+        else
+        {
+            cout << "Empty non water descriptor" << endl;
+        }
+        keypoints.clear();
+        nonWaterDescriptor.release();
     }
+    nonWaterImages.clear();
     *labels = labelsMat;
+    cout << "I have pushed " << count << "histograms " << endl;
     cout << "=================== Histogram Computed ===================" << endl;
 }
 
@@ -227,12 +303,14 @@ void getImageHistogram(Mat image, vector<KeyPoint> keypoints, Mat *bowDescriptor
 
 int main()
 {
-    int TEST_LBP = 1;
+    int TEST_LBP = 0;
     cout << "Program which classifies an image with the Bag of Words framework" << endl;
     vector<Mat> waterImages, nonWaterImages, waterDescriptors, nonWaterDescriptors;
+    int waterDescriptorsNumber, nonWaterDescriptorsNumber;
     Mat totalDescriptors, histograms, labels, bagOfWords;
     Ptr<SVM> svm;
     Ptr<DescriptorExtractor> detector = SIFT::create();
+    cout << detector->descriptorSize() << endl;
     Ptr<BFMatcher> matcher = makePtr<BFMatcher>(NORM_L2);
     BOWImgDescriptorExtractor bowDE(detector, matcher);
     if (!fopen("../dictionary.yml", "r"))
@@ -258,7 +336,7 @@ int main()
         }
         else
         {
-            descriptorsExtractionLBP(waterImages, nonWaterImages, &waterDescriptors, &nonWaterDescriptors, &totalDescriptors);
+            descriptorsExtractionLBP(waterImages, nonWaterImages, &waterDescriptorsNumber, &nonWaterDescriptorsNumber, &totalDescriptors);
         }
         /*       cout << size(waterDescriptors) << endl;
         cout << size(nonWaterDescriptors) << endl; */
@@ -299,13 +377,14 @@ int main()
         {
             // To train the SVM it is necessary to extract the histograms of the images represented in terms of BagOfWords
             loadImages(&waterImages, &nonWaterImages);
-            if (TEST_LBP)
+            if (!TEST_LBP)
             {
                 descriptorsExtraction(waterImages, nonWaterImages, &waterDescriptors, &nonWaterDescriptors, &totalDescriptors);
+                computeHistograms(&histograms, &labels, waterDescriptors, nonWaterDescriptors, bowDE);
             }
             else
             {
-                descriptorsExtractionLBP(waterImages, nonWaterImages, &waterDescriptors, &nonWaterDescriptors, &totalDescriptors);
+                computeHistogramsLBP(&histograms, &labels, waterImages, nonWaterImages, bowDE);
             }
         }
 
@@ -314,11 +393,14 @@ int main()
         svm = SVM::create();
         svm->setType(SVM::C_SVC);
         svm->setKernel(SVM::LINEAR);
-        svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER | TermCriteria::EPS, 100, 1e-6));
+        svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER | TermCriteria::EPS, 1000, 1e-6));
 
-        computeHistograms(&histograms, &labels, waterDescriptors, nonWaterDescriptors, bowDE);
+        //computeHistograms(&histograms, &labels, waterDescriptors, nonWaterDescriptors, bowDE);
 
         Ptr<TrainData> trainData = TrainData::create(histograms, ROW_SAMPLE, labels);
+
+        cout << histograms.size() << endl;
+        cout << labels.size() << endl;
         svm->trainAuto(trainData);
         float missclassified = svm->calcError(trainData, false, noArray());
         cout << "SVM trained, percentage of missclassified: " << missclassified << endl;
@@ -329,12 +411,11 @@ int main()
         cout << "SVM model already trained found! Loading..." << endl;
         svm = SVM::load("../svm.yml");
     }
-
-    float sigma = 1.5;
-    float k = 300;
-    float min_size = 400;
-    int radius = 1;
-    int neighbors = 8;
+    float sigma = 2;
+    float k = 600;
+    float min_size = 600;
+    int radius = 4;
+    int neighbors = 16;
 
     image<rgb> *input = loadPPM("../blue-boat-freedom-horizon-ocean-2878.ppm");
 
@@ -342,107 +423,109 @@ int main()
     int num_ccs;
     std::vector<cv::Mat> masks;
     image<rgb> *seg = segment_image(input, sigma, k, min_size, &num_ccs, &masks);
-    cout << masks.size() << endl;
-    // Input Image semantic segmentation part
-    Mat testSegmentation = imread("../blue-boat-freedom-horizon-ocean-2878.ppm", IMREAD_GRAYSCALE);
 
-    Mat testSmoothed;
-    GaussianBlur(testSegmentation, testSmoothed, Size(7, 7), 5, 3, BORDER_CONSTANT); // tiny bit of smoothing is always a good idea
-    Mat lbp_desc = lbp::ELBP(testSmoothed, radius, neighbors);
-    normalize(lbp_desc, lbp_desc, 0, 255, NORM_MINMAX, CV_8UC1);
-    imshow("LBP", lbp_desc);
-
-    Range x_crop_mask(1, masks[0].cols - 1), y_crop_mask(1, masks[0].rows - 1);
-    Mat mask(masks[0], y_crop_mask, x_crop_mask);
-
-    cout << "Size LBP: " << lbp_desc.size() << endl;
-    cout << "Size Mask: " << mask.size() << endl;
-
-    bitwise_and(lbp_desc, mask, lbp_desc);
-    imshow("LBP", lbp_desc);
-    waitKey(0);
-    Mat output = testSegmentation.clone();
-
-    // Test LBP
-    Mat lbpTestTraining = imread("../training/water/w1021.png", IMREAD_GRAYSCALE);
-    Mat lbpImg = lbp::ELBP(lbpTestTraining);
-    cout << lbpImg.size() << endl;
-    normalize(lbpImg, lbpImg, 0, 255, NORM_MINMAX, CV_8UC1);
-    cout << lbpTestTraining.size() << endl;
-    cout << lbpImg.size() << endl;
-
-    imshow("lbp inputimg", lbpTestTraining);
-    imshow("lbp image", lbpImg);
-    waitKey(0);
-    /* 
-        Test with SIFT on single cut images
-      Mat partialTest = imread("../test/non_water/aida-ship-driving-cruise-ship-sea-144796_micro_ship.png", IMREAD_GRAYSCALE);
-    vector<KeyPoint> tests;
-    detector->detect(partialTest, tests);
-    Mat histogram;
-    getImageHistogram(partialTest, tests, &histogram, bowDE);
-    int prediction = svm->predict(histogram);
-    if (prediction == WATER_CLASS)
+    if (TEST_LBP)
     {
-        cout << "This is water" << endl;
-    }
-    else
-    {
-        cout << "This is not water" << endl;
-    } */
+        // Input Image semantic segmentation part
+        Mat testSegmentation = imread("../oil-tankers-supertankers-oil-tankers-336718.ppm", IMREAD_GRAYSCALE);
+        imshow("input image", testSegmentation);
+        GaussianBlur(testSegmentation, testSegmentation, Size(9, 9), 7, 7); // tiny bit of smoothing is always a good idea
+        testSegmentation = lbp::ELBP(testSegmentation);
+        normalize(testSegmentation, testSegmentation, 0, 255, NORM_MINMAX, CV_8UC1);
+        Mat output = testSegmentation.clone();
+        Range x_cut(1, masks[0].cols - 1), y_cut(1, masks[0].rows - 1);
 
-    Mat partialTest = imread("../test/non_water/aida-ship-driving-cruise-ship-sea-144796_micro_ship.png", IMREAD_GRAYSCALE);
-    partialTest = lbp::ELBP(partialTest);
-    normalize(partialTest, partialTest, 0, 255, NORM_MINMAX, CV_8UC1);
+        Mat img = convertNativeToMat(seg);
+        imshow("Segmentation Result", img);
+        imshow("Input LBP", testSegmentation);
+        waitKey(0);
 
-    vector<KeyPoint> tests;
-    detector->detect(partialTest, tests);
+        cout << testSegmentation.size() << endl;
 
-    Mat histogram;
-    getImageHistogram(partialTest, tests, &histogram, bowDE);
-    int prediction = svm->predict(histogram);
-    if (prediction == WATER_CLASS)
-    {
-        cout << "This is water" << endl;
-    }
-    else
-    {
-        cout << "This is not water" << endl;
-    }
-
-    Mat img = convertNativeToMat(seg);
-    imshow("Segmentation Result", img);
-    imshow("Input Image", testSegmentation);
-    waitKey(0);
-
-    for (Mat mask : masks)
-    {
-        // Extract SIFT features for masked region
-        int prediction = -1;
-        vector<KeyPoint> keypoints;
-        detector->detect(testSegmentation, keypoints, mask);
-        // Represent features with an Histogram
-        if (!keypoints.empty())
+        for (Mat mask : masks)
         {
+            mask = mask(y_cut, x_cut);
+            float prediction = -1;
+            Mat drawnKeypoints;
+            // Extract SIFT features for masked region
+            vector<KeyPoint> keypoints;
+            detector->detect(testSegmentation, keypoints, mask);
+            /* drawKeypoints(testSegmentation,keypoints,drawnKeypoints);
+        resize(drawnKeypoints,drawnKeypoints,Size(),0.75,0.75);
+        imshow("Drawn keypoints",drawnKeypoints);
+        waitKey(0);
+        destroyAllWindows(); */
+            // Represent features with an Histogram
             Mat histogram;
             getImageHistogram(testSegmentation, keypoints, &histogram, bowDE);
+
+            if (!histogram.empty())
+            {
+                prediction = svm->predict(histogram);
+            }
             // Perform classification
-            prediction = svm->predict(histogram);
-        }
-        cout << prediction << endl;
 
-        // Assign a "color" to each segment dependently on their class
-        if (prediction == WATER_CLASS)
-        {
-            output.setTo(255, mask);
+            cout << prediction << endl;
+
+            // Assign a "color" to each segment dependently on their class
+            if (prediction == WATER_CLASS)
+            {
+                output.setTo(255, mask);
+            }
+            else
+            {
+                output.setTo(0, mask);
+            }
         }
-        else
-        {
-            output.setTo(0, mask);
-        }
+        resize(output, output, Size(), 0.5, 0.5);
+        imshow("Test Semantic Segmentation", output);
+        waitKey(0);
     }
+    else
+    {
+        Mat testSegmentation = imread("../blue-boat-freedom-horizon-ocean-2878.ppm", IMREAD_GRAYSCALE);
+        imshow("input image", testSegmentation);
+        Mat img = convertNativeToMat(seg);
+        imshow("Segmentation Result", img);
+        imshow("Input", testSegmentation);
+        waitKey(0);
+        Mat output = testSegmentation.clone();
+        cout << "# Segment: "<< num_ccs << "found, classifying..." << endl; 
+        for (Mat mask : masks)
+        {
+            float prediction = -1;
+            // Extract SIFT features for masked region
+            vector<KeyPoint> keypoints;
+            Mat tmp;
+            detector->detect(testSegmentation, keypoints, mask);
+            /* drawKeypoints(testSegmentation,keypoints,tmp);
+            imshow("Keypoints",tmp);
+            waitKey(0); */
+            // Represent features with an Histogram
+            Mat histogram;
+            getImageHistogram(testSegmentation, keypoints, &histogram, bowDE);
 
-    imshow("Test Semantic Segmentation", output);
-    waitKey(0);
+            if (!histogram.empty())
+            {
+                prediction = svm->predict(histogram);
+            }
+            // Perform classification
+
+            cout << prediction << endl;
+
+            // Assign a "color" to each segment dependently on their class
+            if (prediction == WATER_CLASS)
+            {
+                output.setTo(255, mask);
+            }
+            else
+            {
+                output.setTo(0, mask);
+            }
+        }
+        resize(output, output, Size(), 0.5, 0.5);
+        imshow("Test Semantic Segmentation", output);
+        waitKey(0);
+    }
     return 0;
 }
