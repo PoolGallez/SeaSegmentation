@@ -19,17 +19,16 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
- /usr/include/c++/11.1.0/pstl/pstl_config.h /usr/include/stdlib.h \
- /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h /usr/include/bits/stdint-intn.h \
- /usr/include/endian.h /usr/include/bits/endian.h \
- /usr/include/bits/endianness.h /usr/include/bits/byteswap.h \
- /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
- /usr/include/bits/select.h /usr/include/bits/types/sigset_t.h \
- /usr/include/bits/types/__sigset_t.h \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h /usr/include/sys/types.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/include/bits/stdint-intn.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/endianness.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/types/sigset_t.h /usr/include/bits/types/__sigset_t.h \
  /usr/include/bits/types/struct_timeval.h \
  /usr/include/bits/types/struct_timespec.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
@@ -86,49 +85,27 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/c++/11.1.0/bits/stl_construct.h /usr/include/c++/11.1.0/new \
  /usr/include/c++/11.1.0/bits/exception.h \
  /usr/include/c++/11.1.0/bits/uniform_int_dist.h \
- /usr/include/c++/11.1.0/pstl/glue_algorithm_defs.h \
- /usr/include/c++/11.1.0/functional \
- /usr/include/c++/11.1.0/bits/stl_function.h \
- /usr/include/c++/11.1.0/backward/binders.h /usr/include/c++/11.1.0/tuple \
- /usr/include/c++/11.1.0/bits/uses_allocator.h \
- /usr/include/c++/11.1.0/bits/invoke.h \
- /usr/include/c++/11.1.0/bits/functional_hash.h \
- /usr/include/c++/11.1.0/bits/hash_bytes.h \
- /usr/include/c++/11.1.0/bits/refwrap.h \
- /usr/include/c++/11.1.0/bits/std_function.h \
- /usr/include/c++/11.1.0/typeinfo /usr/include/c++/11.1.0/unordered_map \
- /usr/include/c++/11.1.0/bits/allocator.h \
- /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
- /usr/include/c++/11.1.0/ext/new_allocator.h \
- /usr/include/c++/11.1.0/bits/memoryfwd.h \
- /usr/include/c++/11.1.0/ext/alloc_traits.h \
- /usr/include/c++/11.1.0/bits/alloc_traits.h \
- /usr/include/c++/11.1.0/ext/aligned_buffer.h \
- /usr/include/c++/11.1.0/bits/hashtable.h \
- /usr/include/c++/11.1.0/bits/hashtable_policy.h \
- /usr/include/c++/11.1.0/bits/node_handle.h \
- /usr/include/c++/11.1.0/bits/unordered_map.h \
- /usr/include/c++/11.1.0/bits/erase_if.h /usr/include/c++/11.1.0/vector \
- /usr/include/c++/11.1.0/bits/stl_uninitialized.h \
- /usr/include/c++/11.1.0/bits/stl_vector.h \
- /usr/include/c++/11.1.0/bits/stl_bvector.h \
- /usr/include/c++/11.1.0/bits/vector.tcc \
- /usr/include/c++/11.1.0/pstl/execution_defs.h \
  /usr/include/opencv4/opencv2/core/cvstd.hpp \
  /usr/include/c++/11.1.0/cstring /usr/include/string.h \
  /usr/include/strings.h /usr/include/c++/11.1.0/cctype \
  /usr/include/ctype.h /usr/include/c++/11.1.0/string \
  /usr/include/c++/11.1.0/bits/stringfwd.h \
+ /usr/include/c++/11.1.0/bits/memoryfwd.h \
  /usr/include/c++/11.1.0/bits/char_traits.h \
  /usr/include/c++/11.1.0/bits/postypes.h /usr/include/c++/11.1.0/cwchar \
  /usr/include/wchar.h /usr/include/bits/types/wint_t.h \
  /usr/include/bits/types/mbstate_t.h \
+ /usr/include/c++/11.1.0/bits/allocator.h \
+ /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
+ /usr/include/c++/11.1.0/ext/new_allocator.h \
  /usr/include/c++/11.1.0/bits/localefwd.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/c++locale.h \
  /usr/include/c++/11.1.0/clocale /usr/include/locale.h \
  /usr/include/bits/locale.h /usr/include/c++/11.1.0/iosfwd \
  /usr/include/c++/11.1.0/bits/ostream_insert.h \
  /usr/include/c++/11.1.0/bits/cxxabi_forced.h \
+ /usr/include/c++/11.1.0/bits/stl_function.h \
+ /usr/include/c++/11.1.0/backward/binders.h \
  /usr/include/c++/11.1.0/bits/basic_string.h \
  /usr/include/c++/11.1.0/ext/atomicity.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/gthr.h \
@@ -140,9 +117,9 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/bits/types/struct_itimerspec.h /usr/include/bits/setjmp.h \
  /usr/include/bits/types/struct___jmp_buf_tag.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/atomic_word.h \
- /usr/include/sys/single_threaded.h /usr/include/c++/11.1.0/string_view \
- /usr/include/c++/11.1.0/bits/ranges_base.h \
- /usr/include/c++/11.1.0/bits/string_view.tcc \
+ /usr/include/sys/single_threaded.h \
+ /usr/include/c++/11.1.0/ext/alloc_traits.h \
+ /usr/include/c++/11.1.0/bits/alloc_traits.h \
  /usr/include/c++/11.1.0/ext/string_conversions.h \
  /usr/include/c++/11.1.0/cstdio /usr/include/c++/11.1.0/cerrno \
  /usr/include/errno.h /usr/include/bits/errno.h \
@@ -150,6 +127,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/bits/types/error_t.h \
  /usr/include/c++/11.1.0/bits/charconv.h \
+ /usr/include/c++/11.1.0/bits/functional_hash.h \
+ /usr/include/c++/11.1.0/bits/hash_bytes.h \
  /usr/include/c++/11.1.0/bits/basic_string.tcc \
  /usr/include/c++/11.1.0/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
@@ -157,27 +136,21 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/bits/fp-fast.h \
  /usr/include/bits/mathcalls-helper-functions.h \
  /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
- /usr/include/bits/iscanonical.h /usr/include/c++/11.1.0/bits/specfun.h \
- /usr/include/c++/11.1.0/tr1/gamma.tcc \
- /usr/include/c++/11.1.0/tr1/special_function_util.h \
- /usr/include/c++/11.1.0/tr1/bessel_function.tcc \
- /usr/include/c++/11.1.0/tr1/beta_function.tcc \
- /usr/include/c++/11.1.0/tr1/ell_integral.tcc \
- /usr/include/c++/11.1.0/tr1/exp_integral.tcc \
- /usr/include/c++/11.1.0/tr1/hypergeometric.tcc \
- /usr/include/c++/11.1.0/tr1/legendre_function.tcc \
- /usr/include/c++/11.1.0/tr1/modified_bessel_func.tcc \
- /usr/include/c++/11.1.0/tr1/poly_hermite.tcc \
- /usr/include/c++/11.1.0/tr1/poly_laguerre.tcc \
- /usr/include/c++/11.1.0/tr1/riemann_zeta.tcc \
+ /usr/include/bits/iscanonical.h \
  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
  /usr/include/c++/11.1.0/memory \
+ /usr/include/c++/11.1.0/bits/stl_uninitialized.h \
  /usr/include/c++/11.1.0/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11.1.0/bits/align.h /usr/include/c++/11.1.0/bit \
- /usr/include/c++/11.1.0/bits/unique_ptr.h \
+ /usr/include/c++/11.1.0/bits/uses_allocator.h \
+ /usr/include/c++/11.1.0/bits/unique_ptr.h /usr/include/c++/11.1.0/tuple \
+ /usr/include/c++/11.1.0/bits/invoke.h \
  /usr/include/c++/11.1.0/bits/shared_ptr.h \
  /usr/include/c++/11.1.0/bits/shared_ptr_base.h \
+ /usr/include/c++/11.1.0/typeinfo \
  /usr/include/c++/11.1.0/bits/allocated_ptr.h \
+ /usr/include/c++/11.1.0/bits/refwrap.h \
+ /usr/include/c++/11.1.0/ext/aligned_buffer.h \
  /usr/include/c++/11.1.0/ext/concurrence.h \
  /usr/include/c++/11.1.0/exception \
  /usr/include/c++/11.1.0/bits/exception_ptr.h \
@@ -187,7 +160,6 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/c++/11.1.0/bits/atomic_base.h \
  /usr/include/c++/11.1.0/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11.1.0/backward/auto_ptr.h \
- /usr/include/c++/11.1.0/pstl/glue_memory_defs.h \
  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
  /usr/include/opencv4/opencv2/core/vsx_utils.hpp /usr/include/assert.h \
  /usr/include/opencv4/opencv2/core/check.hpp \
@@ -198,6 +170,9 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/opencv4/opencv2/core/types.hpp \
  /usr/include/c++/11.1.0/cfloat \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/float.h \
+ /usr/include/c++/11.1.0/vector /usr/include/c++/11.1.0/bits/stl_vector.h \
+ /usr/include/c++/11.1.0/bits/stl_bvector.h \
+ /usr/include/c++/11.1.0/bits/vector.tcc \
  /usr/include/opencv4/opencv2/core/mat.hpp \
  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
@@ -226,6 +201,8 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/c++/11.1.0/bits/istream.tcc \
  /usr/include/c++/11.1.0/bits/sstream.tcc \
  /usr/include/opencv4/opencv2/core/utility.hpp \
+ /usr/include/c++/11.1.0/functional \
+ /usr/include/c++/11.1.0/bits/std_function.h \
  /usr/include/c++/11.1.0/mutex /usr/include/c++/11.1.0/chrono \
  /usr/include/c++/11.1.0/ratio /usr/include/c++/11.1.0/ctime \
  /usr/include/c++/11.1.0/bits/parse_numbers.h \
@@ -253,7 +230,7 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/c++/11.1.0/bits/stl_tree.h \
  /usr/include/c++/11.1.0/bits/stl_map.h \
  /usr/include/c++/11.1.0/bits/stl_multimap.h \
- /usr/include/c++/11.1.0/iostream \
+ /usr/include/c++/11.1.0/bits/erase_if.h /usr/include/c++/11.1.0/iostream \
  /usr/include/opencv4/opencv2/ml/ml.inl.hpp \
  /usr/include/c++/11.1.0/fstream /usr/include/c++/11.1.0/bits/codecvt.h \
  /usr/include/c++/11.1.0/x86_64-pc-linux-gnu/bits/basic_file.h \
@@ -274,17 +251,22 @@ CMakeFiles/SeaSegmentation.dir/main.cpp.o: \
  /usr/include/asm-generic/posix_types.h /usr/include/bits/statx-generic.h \
  /usr/include/bits/types/struct_statx_timestamp.h \
  /usr/include/bits/types/struct_statx.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/image.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/misc.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/pnmfile.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/image.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/misc.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/segment-image.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/filter.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/convolve.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/imconv.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/imutil.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/segment-graph.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/graph-segmentation/disjoint-set.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/classes/FeatureExtractor/FeatureExtractor.h \
- /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/libs/lbp/lbp.hpp
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/image.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/misc.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/pnmfile.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/image.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/misc.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/segment-image.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/filter.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/convolve.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/imconv.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/imutil.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/segment-graph.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/disjoint-set.h \
+ /usr/include/c++/11.1.0/unordered_map \
+ /usr/include/c++/11.1.0/bits/hashtable.h \
+ /usr/include/c++/11.1.0/bits/hashtable_policy.h \
+ /usr/include/c++/11.1.0/bits/unordered_map.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/SemanticSegmentor.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/BagOfWords.h \
+ /home/pool/Documents/Magistrale/Computer\ Vision/Boat\ Detection/Semantic\ Segmentation/BoW_Segmentation/include/FeatureExtractor.h

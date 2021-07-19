@@ -1,0 +1,2 @@
+/usr/bin/ar qc libImageLoader.a CMakeFiles/ImageLoader.dir/srcs/Loader.cpp.o
+/usr/bin/ranlib libImageLoader.a

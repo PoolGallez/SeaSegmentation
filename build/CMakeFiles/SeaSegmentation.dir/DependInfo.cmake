@@ -13,11 +13,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/graph-segmentation/CMakeFiles/GraphSegmentation.dir/DependInfo.cmake"
-  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/libs/lbp/CMakeFiles/LBP.dir/DependInfo.cmake"
-  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/FeatureExtractor/CMakeFiles/Extractor.dir/DependInfo.cmake"
-  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/ImageLoader/CMakeFiles/ImageLoader.dir/DependInfo.cmake"
-  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/classes/BagOfWords/CMakeFiles/BagOfWords.dir/DependInfo.cmake"
+  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles/SemanticSegmentor.dir/DependInfo.cmake"
+  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles/BagOfWords.dir/DependInfo.cmake"
+  "/home/pool/Documents/Magistrale/Computer Vision/Boat Detection/Semantic Segmentation/BoW_Segmentation/build/CMakeFiles/Extractor.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

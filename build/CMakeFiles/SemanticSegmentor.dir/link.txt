@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSemanticSegmentor.a CMakeFiles/SemanticSegmentor.dir/srcs/SemanticSegmentor.cpp.o
+/usr/bin/ranlib libSemanticSegmentor.a

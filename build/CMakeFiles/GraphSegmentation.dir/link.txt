@@ -1,0 +1,2 @@
+/usr/bin/ar qc libGraphSegmentation.a CMakeFiles/GraphSegmentation.dir/srcs/GraphSegmentation.cpp.o
+/usr/bin/ranlib libGraphSegmentation.a

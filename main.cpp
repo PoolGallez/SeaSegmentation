@@ -34,22 +34,28 @@
 #include <misc.h>
 #include <pnmfile.h>
 #include "segment-image.h"
-#include "FeatureExtractor.h"
 
+#include "SemanticSegmentor.h"
 //LBP descriptor
-#include "lbp.hpp"
+//#include "lbp.hpp"
+
+#include "BagOfWords.h"
 
 // Namespaces used
 using namespace std;
 using namespace cv;
 using namespace cv::xfeatures2d;
 using namespace cv::ml;
-using namespace lbp;
+//using namespace lbp;
 // Constants
 const string TRAIN_DIR = "../training";
 const string WATER_DIR = "/water/";
 const string NON_WATER_DIR = "/non_water/";
 const int CLUSTER_COUNT = 200; // 80 words per class
+
+const string TEST_FOLDER = "../test/";
+const string PHOTOS = "photos/";
+const string GROUND_TRUTH = "ground_truth/";
 
 const int WATER_CLASS = 1;
 const int NON_WATER_CLASS = -1;
@@ -122,7 +128,7 @@ void descriptorsExtraction(vector<Mat> waterImages, vector<Mat> nonWaterImages, 
     cout << "*** Feature Extracted" << endl;
 }
 
-void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImages, int *waterDescriptorsNumber,
+/* void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImages, int *waterDescriptorsNumber,
                               int *nonWaterDescriptorsNumber,
                               Mat *totalDescriptors)
 {
@@ -188,7 +194,7 @@ void descriptorsExtractionLBP(vector<Mat> waterImages, vector<Mat> nonWaterImage
         exit(e.code);
     }
 }
-
+ */
 void computeHistograms(Mat *histograms, Mat *labels, vector<Mat> waterDescriptors, vector<Mat> nonWaterDescriptors, BOWImgDescriptorExtractor bowDE)
 {
     cout << "=================== Histogram Computation ===================" << endl;
@@ -231,7 +237,7 @@ void computeHistograms(Mat *histograms, Mat *labels, vector<Mat> waterDescriptor
     cout << "=================== Histogram Computed ===================" << endl;
 }
 
-void computeHistogramsLBP(Mat *histograms, Mat *labels, vector<Mat> waterImages, vector<Mat> nonWaterImages, BOWImgDescriptorExtractor bowDE)
+/* void computeHistogramsLBP(Mat *histograms, Mat *labels, vector<Mat> waterImages, vector<Mat> nonWaterImages, BOWImgDescriptorExtractor bowDE)
 {
     cout << "=================== Histogram Computed ===================" << endl;
     cout << "*** Histogram Computation for water images " << endl;
@@ -293,7 +299,7 @@ void computeHistogramsLBP(Mat *histograms, Mat *labels, vector<Mat> waterImages,
     cout << "I have pushed " << count << "histograms " << endl;
     cout << "=================== Histogram Computed ===================" << endl;
 }
-
+ */
 void getImageHistogram(Mat image, vector<KeyPoint> keypoints, Mat *bowDescriptor, BOWImgDescriptorExtractor bowDE)
 {
     Mat histogram;
@@ -304,7 +310,7 @@ void getImageHistogram(Mat image, vector<KeyPoint> keypoints, Mat *bowDescriptor
 
 int main()
 {
-    int TEST_LBP = 0;
+    /* int TEST_LBP = 0;
     cout << "Program which classifies an image with the Bag of Words framework" << endl;
     vector<Mat> waterImages, nonWaterImages, waterDescriptors, nonWaterDescriptors;
     int waterDescriptorsNumber, nonWaterDescriptorsNumber;
@@ -317,15 +323,15 @@ int main()
     if (!fopen("../dictionary.yml", "r"))
     {
         cout << "No dictionary was found, start the creation of the dictionary" << endl;
-        // Dictionary Creation
+        // Dictionary Creation */
 
-        /**
+    /**
      * Steps for the creation of the visual vocabulary: 
      * 1. Extract SIFT descriptors from the training set
      * 2. Quantize the Visual Words with K-Means Clustering
      **/
 
-        // 1. Feature Extraction (SURF features are used to speed up computation)
+    /*        // 1. Feature Extraction (SURF features are used to speed up computation)
 
         loadImages(&waterImages, &nonWaterImages);
 
@@ -337,11 +343,12 @@ int main()
         }
         else
         {
-            descriptorsExtractionLBP(waterImages, nonWaterImages, &waterDescriptorsNumber, &nonWaterDescriptorsNumber, &totalDescriptors);
+            //descriptorsExtractionLBP(waterImages, nonWaterImages, &waterDescriptorsNumber, &nonWaterDescriptorsNumber, &totalDescriptors);
         }
-        /*       cout << size(waterDescriptors) << endl;
+  */
+    /*       cout << size(waterDescriptors) << endl;
         cout << size(nonWaterDescriptors) << endl; */
-        cout << "*** Clustering Visual Words" << endl;
+    /*        cout << "*** Clustering Visual Words" << endl;
 
         TermCriteria termCriteria(TermCriteria::Type::COUNT | TermCriteria::Type::EPS, 100, 0.01);
         BOWKMeansTrainer trainer(CLUSTER_COUNT, termCriteria, 1, KMEANS_PP_CENTERS);
@@ -374,7 +381,7 @@ int main()
 
         cout << "=================== SVM Training ===================" << endl;
 
-        if (size(waterImages) <= 0 || size(nonWaterImages) <= 0 || size(waterDescriptors) <= 0 || size(nonWaterDescriptors) <= 0)
+        if (waterImages.size() <= 0 || nonWaterImages.size() <= 0 || waterDescriptors.size() <= 0 || nonWaterDescriptors.size() <= 0)
         {
             // To train the SVM it is necessary to extract the histograms of the images represented in terms of BagOfWords
             loadImages(&waterImages, &nonWaterImages);
@@ -385,7 +392,7 @@ int main()
             }
             else
             {
-                computeHistogramsLBP(&histograms, &labels, waterImages, nonWaterImages, bowDE);
+                //computeHistogramsLBP(&histograms, &labels, waterImages, nonWaterImages, bowDE);
             }
         }
 
@@ -418,17 +425,41 @@ int main()
     int radius = 4;
     int neighbors = 16;
 
-    image<rgb> *input = loadPPM("../boat-ferry-departure-crossing-sea-2733061.ppm");
+    Mat testSegmentation = imread("../04.png");
+    imshow("Original Image",testSegmentation);
+    imwrite("../imbuff/convertedPPM.ppm",testSegmentation);
+    cvtColor(testSegmentation,testSegmentation,COLOR_BGR2GRAY);
+    image<rgb> *input = loadPPM("../imbuff/convertedPPM.ppm");
 
     cout << "Start processing the image.. " << endl;
     int num_ccs;
     std::vector<cv::Mat> masks;
     image<rgb> *seg = segment_image(input, sigma, k, min_size, &num_ccs, &masks);
+    Mat graphSegmented = convertNativeToMat(seg);
+    SemanticSegmentor test(testSegmentation, graphSegmented, masks);
 
-    if (TEST_LBP)
+    FeatureExtractor extractor(SIFT::create(), makePtr<BFMatcher>(NORM_L2));
+    BagOfWords bow(extractor);
+    if (fopen("../dictionary.yml", "r"))
+    {
+        cout << "OBj Oriented: Dictionary found! Loading..." << endl;
+        bow.loadDictionary("../dictionary.yml");
+        cout << "Dictionary loaded" << endl;
+    }
+    if (fopen("../svm.yml", "r"))
+    {
+        cout << "OBj Oriented: SVM found! Loading..." << endl;
+        bow.loadSVM("../svm.yml");
+        cout << "SVM loaded" << endl;
+    }
+
+    Mat output = test.getSemanticSegmented(bow);
+    imshow("GraphSegmented", test.getGraphSegmented());
+    imshow("Semantic Segmentation", output);
+    waitKey(0); */
+    /* if (TEST_LBP)
     {
         // Input Image semantic segmentation part
-        Mat testSegmentation = imread("../oil-tankers-supertankers-oil-tankers-336718.ppm", IMREAD_GRAYSCALE);
         imshow("input image", testSegmentation);
         GaussianBlur(testSegmentation, testSegmentation, Size(9, 9), 7, 7); // tiny bit of smoothing is always a good idea
         testSegmentation = lbp::ELBP(testSegmentation);
@@ -451,11 +482,6 @@ int main()
             // Extract SIFT features for masked region
             vector<KeyPoint> keypoints;
             detector->detect(testSegmentation, keypoints, mask);
-            /* drawKeypoints(testSegmentation,keypoints,drawnKeypoints);
-        resize(drawnKeypoints,drawnKeypoints,Size(),0.75,0.75);
-        imshow("Drawn keypoints",drawnKeypoints);
-        waitKey(0);
-        destroyAllWindows(); */
             // Represent features with an Histogram
             Mat histogram;
             getImageHistogram(testSegmentation, keypoints, &histogram, bowDE);
@@ -484,14 +510,13 @@ int main()
     }
     else
     {
-        Mat testSegmentation = imread("../boat-ferry-departure-crossing-sea-2733061.ppm", IMREAD_GRAYSCALE);
         imshow("input image", testSegmentation);
         Mat img = convertNativeToMat(seg);
         imshow("Segmentation Result", img);
         imshow("Input", testSegmentation);
         waitKey(0);
         Mat output = testSegmentation.clone();
-        cout << "# Segment: "<< num_ccs << "found, classifying..." << endl; 
+        cout << "# Segment: " << num_ccs << "found, classifying..." << endl;
         for (Mat mask : masks)
         {
             float prediction = -1;
@@ -499,9 +524,6 @@ int main()
             vector<KeyPoint> keypoints;
             Mat tmp;
             detector->detect(testSegmentation, keypoints, mask);
-            /* drawKeypoints(testSegmentation,keypoints,tmp);
-            imshow("Keypoints",tmp);
-            waitKey(0); */
             // Represent features with an Histogram
             Mat histogram;
             getImageHistogram(testSegmentation, keypoints, &histogram, bowDE);
@@ -528,5 +550,79 @@ int main()
         imshow("Test Semantic Segmentation", output);
         waitKey(0);
     }
+
+    cout << "Test with the objects" << endl;
+    FeatureExtractor extractor(SIFT::create(), makePtr<BFMatcher>(NORM_L2));
+    BagOfWords bow(extractor);
+    if (fopen("../dictionary.yml", "r"))
+    {
+        cout << "OBj Oriented: Dictionary found! Loading..." << endl;
+        bow.loadDictionary("../dictionary.yml");
+        cout << "Dictionary loaded" << endl;
+    }
+    if(fopen("../svm.yml","r")){
+        cout << "OBj Oriented: SVM found! Loading..." << endl;
+        bow.loadSVM("../svm.yml");
+        cout << "SVM loaded" << endl; 
+    }
+
+    Mat output = bow.getSemanticSegmented(testSegmentation,masks);
+    imshow("OBJ oriented result",output);
+    waitKey(0);
+ */
+    cout << "Test of the images in the test folder: " << endl;
+
+    FeatureExtractor extractor(SIFT::create(), makePtr<BFMatcher>(NORM_L2));
+    BagOfWords bow(extractor);
+    if (fopen("../dictionary.yml", "r"))
+    {
+        cout << "OBj Oriented: Dictionary found! Loading..." << endl;
+        bow.loadDictionary("../dictionary.yml");
+        cout << "Dictionary loaded" << endl;
+    }
+    if (fopen("../svm.yml", "r"))
+    {
+        cout << "OBj Oriented: SVM found! Loading..." << endl;
+        bow.loadSVM("../svm.yml");
+        cout << "SVM loaded" << endl;
+    }
+    int num;
+    string name = "";
+    cout << "The files will be searched in ${PROJECT_ROOT}/test/photos" << endl;
+    cout << "The ground truth will be searched in ${PROJECT_ROOT}/test/ground_truth/" << endl;
+
+    cout << "Enter the filename (with extension): ";
+    cin >> name;
+    cout << endl;
+    Mat inputImage = imread(TEST_FOLDER + PHOTOS + name);
+    string filename = name.substr(0,name.find("."));
+    string ext = name.substr(name.find("."), name.length());
+
+    cout << filename << " " << ext << endl;
+    if (ext.find(".png") == std::string::npos)
+    {
+        ext = ".png";
+        imwrite(TEST_FOLDER + PHOTOS + filename + ext, inputImage );
+        inputImage = imread(TEST_FOLDER + PHOTOS + filename + ext);
+    }
+
+    Mat groundTruth = imread(TEST_FOLDER + GROUND_TRUTH + filename + ext, IMREAD_GRAYSCALE);
+    imwrite("../imbuff/convertTest.ppm", inputImage);
+    image<rgb> *inputNative = loadPPM("../imbuff/convertTest.ppm");
+    cvtColor(inputImage, inputImage, COLOR_BGR2GRAY);
+    vector<Mat> masks;
+    image<rgb> *segmented = segment_image(inputNative, SemanticSegmentor::SIGMA_DEF, SemanticSegmentor::K_DEF, SemanticSegmentor::MINSIZE_DEF, &num, &masks);
+    Mat segmentedMat = convertNativeToMat(segmented);
+    SemanticSegmentor segmentor(inputImage, segmentedMat, masks);
+    Mat out = segmentor.getSemanticSegmented(bow);
+
+    double seaAcc = 0, nonSeaAcc = 0;
+    SemanticSegmentor::getPixelAccuracy(out, groundTruth, seaAcc, nonSeaAcc);
+
+    cout << "Sea Pixel Accuracy: " << seaAcc << " "
+         << "Non Sea Pixel Accuracy: " << nonSeaAcc << endl;
+
+    imwrite("../test_results/semantic_segmentation/"+filename+ext, out);
+    imwrite("../test_results/segmentation/"+filename+ext, segmentedMat);
     return 0;
 }

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libExtractor.a CMakeFiles/Extractor.dir/srcs/Extractor.cpp.o
+/usr/bin/ranlib libExtractor.a

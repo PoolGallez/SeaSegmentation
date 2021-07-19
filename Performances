@@ -1,0 +1,33 @@
+Filename		Sea Accuracy		Non Sea Accuracy
+---------------------------------------------------------------------------------
+00.png			0.89			0.90
+01.png			0.83			0.88
+02.png			0.87			0.98
+03.png			0.002			0.99
+04.png			0.93			0.96
+05.png			0.007			0.85
+06.png			0.84			0.96
+07.png			0.89			0.98
+08.png			0.002			0.96
+09.png			0.88			0.99
+10.png			0.91			0.96
+11.png			0			0.98		<-- fine dataset venezia
+12.png			0			0.98		<-- aidaship
+13.png			0.99			0.99
+14.png			0.99			0.999
+15.png			0.99			0.99
+16.png			0.004			1
+17.png			0.99			0.99
+18.png			0.99			0.99
+19.png			0.99			0.97
+20.png			0.97			0.99
+21.png			0.023			0.99
+22.png			0.99			0.99
+24.png			0			0 ? (in realtà è giusto)
+25.png			0.94			0.99
+26.png			0.92			0.75
+27.png			0.99			0.86
+28.png			0.96			0.62
+29.png			0.90			0.99
+
+Manca 23.png e da rivedere 24; magari cazzeggiare con i parametri.
