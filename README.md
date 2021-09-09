@@ -55,7 +55,73 @@ In summary:  Meanshift actually **sucks!** (i don't have a NASA computer, and so
 
 ### Graph Segmentation 
 Graph Segmentation techniques, on the other hand, are fast and work like magic. 
-This code uses the original implementation of the Felzenszwalb-Huttenlocher graph segmentor 
+This code uses the original implementation of the Felzenszwalb-Huttenlocher graph segmentor.
+This algorithm relies to an underlying weighted graph , where each node corresponds to a
+pixel and the edges weighted by some measure of dissimilarity (such as the intensity) connect
+neighbouring pixels. With this framework, a segmentation is a partition the original Graph and, therefore, is defined by a set of edges of the original graph. 
+The dissimilarity criterion used in the paper can be proved to guarantee neither too coarse nor too fine results, and
+this algorithm has a time complexity _O (n log(n) )_, where n is the number of pixel, making it possible to be used with videos.
+
+![Input Image](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20.png)
+![Segmented Image](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_seg.png)
+
+### The mask extraction process
+
+One could now think that each assigned to a random corrensponding to a number within the interval \[1, \# segments \], however each segment is identified by an number (which in some cases is really high) corresponding to the merged intensities of two similar pixels.
+Therefore, to isolate each segment with binary masks, it was necessary to process the segmentation resut by isolating each individual segment.
+The code relies on an unordered map implemented in C++ used in the following function: 
+
+    /**
+     * Method that isolates each single segment
+     * @author Paolo Galletta
+     * @param u the segmentation graph
+     * @param width image width
+     * @param height image height
+     * @return the vector containing the mask of each single segment
+     **/
+    std::vector<cv::Mat> get_segment_mask(universe *u, int width, int height)
+    {
+      std::vector<cv::Mat> output;
+      int num_sets = u->num_sets();
+
+      // To isolate the segments, an hash map is used
+      std::unordered_multimap<int, cv::Point> hash_map;
+
+      // Traverse the image
+      for (int y = 0; y < height; y++)
+      {
+        for (int x = 0; x < width; x++)
+        {
+          int comp = u->find(y * width + x);
+
+          // Group the points belonging to the same segment
+          hash_map.insert({comp, cv::Point(x, y)});
+        }
+      }
+
+      // Create the Mat single masks
+      for (auto it = hash_map.begin(); it != hash_map.end();)
+      {
+        cv::Mat current_segment(cv::Size(width, height), CV_8UC1);
+        auto const &key = it->first;
+
+        auto range = hash_map.equal_range(key);
+
+        auto iter = range.first;
+        for (; iter != range.second; ++iter)
+        {
+          current_segment.at<uchar>(iter->second) = 255;
+        }
+        output.push_back(current_segment);
+
+        while (++it != hash_map.end() && it->first == key)
+          ;
+      }
+      return output;
+    }
 
 ### Bag of Visual Words
-This is cool.
+Once that the individual segment masks are extracted, we can classify each segment by using a Bag Of Visual Words approach which performs classification by obtaining an histogram representation of the SIFT features extracted in each individual segment.
+In particular, for the dictionary it has been used the K-Means clustering algorithm with 200 clusters, and for the classification an SVM linear classifiers (as SIFT descriptors lie in a 128th dimentional space, it shouldn't be a problem to find a separating hyperplane).
+
+![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_seg.png)
