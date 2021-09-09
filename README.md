@@ -124,4 +124,4 @@ The code relies on an unordered map implemented in C++ used in the following fun
 Once that the individual segment masks are extracted, we can classify each segment by using a Bag Of Visual Words approach which performs classification by obtaining an histogram representation of the SIFT features extracted in each individual segment.
 In particular, for the dictionary it has been used the K-Means clustering algorithm with 200 clusters, and for the classification an SVM linear classifiers (as SIFT descriptors lie in a 128th dimentional space, it shouldn't be a problem to find a separating hyperplane).
 
-![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_seg.png)
+![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_sem_seg.png)
