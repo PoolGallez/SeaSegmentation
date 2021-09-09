@@ -50,9 +50,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/SemanticSegmentor.dir/DependInfo.cmake"
+  "CMakeFiles/BagOfWords.dir/DependInfo.cmake"
   "CMakeFiles/ImageLoader.dir/DependInfo.cmake"
   "CMakeFiles/Extractor.dir/DependInfo.cmake"
-  "CMakeFiles/BagOfWords.dir/DependInfo.cmake"
-  "CMakeFiles/GraphSegmentation.dir/DependInfo.cmake"
   "CMakeFiles/SeaSegmentation.dir/DependInfo.cmake"
   )

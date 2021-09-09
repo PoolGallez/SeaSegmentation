@@ -69,7 +69,11 @@ image<uchar> *threshold(image<T> *src, int t)
   return dst;
 }
 
-/* convert image to Mat */
+/**
+ * Converts the image native representation by Pedro Felzenszwalb to OpenCV mat
+ * @param input the native representation of the image
+ * @return the mat representation of the native representation
+ **/
 cv::Mat convertNativeToMat(image<rgb> *input)
 {
   int w = input->width();

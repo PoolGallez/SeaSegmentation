@@ -55,6 +55,55 @@ static inline float diff(image<float> *r, image<float> *g, image<float> *b,
               square(imRef(b, x1, y1) - imRef(b, x2, y2)));
 }
 
+/**
+ * Method that isolates each single segment
+ * @author Paolo Galletta
+ * @param u the segmentation graph
+ * @param width image width
+ * @param height image height
+ * @return the vector containing the mask of each single segment
+ **/
+std::vector<cv::Mat> get_segment_mask(universe *u, int width, int height)
+{
+  std::vector<cv::Mat> output;
+  int num_sets = u->num_sets();
+
+  // To isolate the segments, an hash map is used
+  std::unordered_multimap<int, cv::Point> hash_map;
+
+  // Traverse the image
+  for (int y = 0; y < height; y++)
+  {
+    for (int x = 0; x < width; x++)
+    {
+      int comp = u->find(y * width + x);
+
+      // Group the points belonging to the same segment
+      hash_map.insert({comp, cv::Point(x, y)});
+    }
+  }
+
+  // Create the Mat single masks
+  for (auto it = hash_map.begin(); it != hash_map.end();)
+  {
+    cv::Mat current_segment(cv::Size(width, height), CV_8UC1);
+    auto const &key = it->first;
+
+    auto range = hash_map.equal_range(key);
+
+    auto iter = range.first;
+    for (; iter != range.second; ++iter)
+    {
+      current_segment.at<uchar>(iter->second) = 255;
+    }
+    output.push_back(current_segment);
+
+    while (++it != hash_map.end() && it->first == key)
+      ;
+  }
+  return output;
+}
+
 /*
  * Segment an image
  *
@@ -66,41 +115,6 @@ static inline float diff(image<float> *r, image<float> *g, image<float> *b,
  * min_size: minimum component size (enforced by post-processing stage).
  * num_ccs: number of connected components in the segmentation.
  */
-
-/**
- * Method which creates individual binary masks for each segment
- **/
-std::vector<cv::Mat> get_segment_mask(universe *u, int width, int height)
-{
-  std::vector<cv::Mat> output;
-  int num_sets = u->num_sets();
-  std::unordered_multimap<int, cv::Point> hash_map;
-  for (int y = 0; y < height; y++)
-  {
-    for (int x = 0; x < width; x++)
-    {
-      int comp = u->find(y * width + x);
-      hash_map.insert({comp, cv::Point(x, y)});
-    }
-  }
-  for (auto it = hash_map.begin(); it != hash_map.end();)
-  {
-    cv::Mat current_segment(cv::Size(width,height),CV_8UC1);
-    auto const &key = it->first;
-
-    auto range = hash_map.equal_range(key);
-    
-    auto iter = range.first;
-    for(; iter != range.second; ++iter){
-        current_segment.at<uchar>(iter->second) = 255;
-    }
-    output.push_back(current_segment);
-
-    while (++it != hash_map.end() && it->first == key) // or c.key_eq()
-      ;
-  }
-  return output;
-}
 
 image<rgb> *segment_image(image<rgb> *im, float sigma, float c, int min_size,
                           int *num_ccs, std::vector<cv::Mat> *masks)

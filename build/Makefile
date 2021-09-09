@@ -130,6 +130,19 @@ SemanticSegmentor/fast:
 .PHONY : SemanticSegmentor/fast
 
 #=============================================================================
+# Target rules for targets named BagOfWords
+
+# Build rule for target.
+BagOfWords: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 BagOfWords
+.PHONY : BagOfWords
+
+# fast build rule for target.
+BagOfWords/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BagOfWords.dir/build.make CMakeFiles/BagOfWords.dir/build
+.PHONY : BagOfWords/fast
+
+#=============================================================================
 # Target rules for targets named ImageLoader
 
 # Build rule for target.
@@ -154,32 +167,6 @@ Extractor: cmake_check_build_system
 Extractor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extractor.dir/build.make CMakeFiles/Extractor.dir/build
 .PHONY : Extractor/fast
-
-#=============================================================================
-# Target rules for targets named BagOfWords
-
-# Build rule for target.
-BagOfWords: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 BagOfWords
-.PHONY : BagOfWords
-
-# fast build rule for target.
-BagOfWords/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BagOfWords.dir/build.make CMakeFiles/BagOfWords.dir/build
-.PHONY : BagOfWords/fast
-
-#=============================================================================
-# Target rules for targets named GraphSegmentation
-
-# Build rule for target.
-GraphSegmentation: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GraphSegmentation
-.PHONY : GraphSegmentation
-
-# fast build rule for target.
-GraphSegmentation/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphSegmentation.dir/build.make CMakeFiles/GraphSegmentation.dir/build
-.PHONY : GraphSegmentation/fast
 
 #=============================================================================
 # Target rules for targets named SeaSegmentation
@@ -266,30 +253,6 @@ srcs/Extractor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Extractor.dir/build.make CMakeFiles/Extractor.dir/srcs/Extractor.cpp.s
 .PHONY : srcs/Extractor.cpp.s
 
-srcs/GraphSegmentation.o: srcs/GraphSegmentation.cpp.o
-.PHONY : srcs/GraphSegmentation.o
-
-# target to build an object file
-srcs/GraphSegmentation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphSegmentation.dir/build.make CMakeFiles/GraphSegmentation.dir/srcs/GraphSegmentation.cpp.o
-.PHONY : srcs/GraphSegmentation.cpp.o
-
-srcs/GraphSegmentation.i: srcs/GraphSegmentation.cpp.i
-.PHONY : srcs/GraphSegmentation.i
-
-# target to preprocess a source file
-srcs/GraphSegmentation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphSegmentation.dir/build.make CMakeFiles/GraphSegmentation.dir/srcs/GraphSegmentation.cpp.i
-.PHONY : srcs/GraphSegmentation.cpp.i
-
-srcs/GraphSegmentation.s: srcs/GraphSegmentation.cpp.s
-.PHONY : srcs/GraphSegmentation.s
-
-# target to generate assembly for a file
-srcs/GraphSegmentation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphSegmentation.dir/build.make CMakeFiles/GraphSegmentation.dir/srcs/GraphSegmentation.cpp.s
-.PHONY : srcs/GraphSegmentation.cpp.s
-
 srcs/Loader.o: srcs/Loader.cpp.o
 .PHONY : srcs/Loader.o
 
@@ -348,7 +311,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... BagOfWords"
 	@echo "... Extractor"
-	@echo "... GraphSegmentation"
 	@echo "... ImageLoader"
 	@echo "... SeaSegmentation"
 	@echo "... SemanticSegmentor"
@@ -361,9 +323,6 @@ help:
 	@echo "... srcs/Extractor.o"
 	@echo "... srcs/Extractor.i"
 	@echo "... srcs/Extractor.s"
-	@echo "... srcs/GraphSegmentation.o"
-	@echo "... srcs/GraphSegmentation.i"
-	@echo "... srcs/GraphSegmentation.s"
 	@echo "... srcs/Loader.o"
 	@echo "... srcs/Loader.i"
 	@echo "... srcs/Loader.s"
