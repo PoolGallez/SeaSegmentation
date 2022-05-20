@@ -132,3 +132,37 @@ In particular, for the dictionary it has been used the K-Means clustering algori
 Dataset Used to identify the Sea: MASATI.
 
 ![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_sem_seg.png)
+
+## Performance achieved
+
+|Filename	|	Sea Accuracy |		Non Sea Accuracy	|	Total Accuracy                              |
+|-----------|----------------|--------------------------|-----------------------------------------------|
+|00.png		|	0.89		 |   0.87				    |        0.88				                    |
+|01.png		|	0.83		 |	0.87				    |        0.85				                    |				
+|02.png		|	0.90		 |	0.96				    |        0.92				                    |				
+|03.png		|	0.002		 |	0.99				    |        0.73				                    |
+|04.png		|	0.93		 |	0.96				    |        0.94				                    |
+|05.png		|	0.02		 |	0.85				    |        0.43				                    |				
+|06.png		|	0.85		 |	0.94				    |        0.88				                    |
+|07.png		|	0.89		 |	0.98				    |        0.93				                    |
+|08.png		|	0.01		 | 	0.93				    |        0.40				                    |				
+|09.png		|	0.88		 |	0.99				    |        0.91				                    |
+|10.png		|	0.91		 |	0.95				    |        0.93				                    |			
+|11.png		|	0.002		 |	0.98				    |        0.68		<-- fine dataset venezia    |
+|12.png		|	0			 |   0.98				    |        0.81		<-- aidaship                |
+|13.png		|	0.99		 |	0.99				    |        0.99				                    |
+|14.png		|	0.99		 |	0.999				    |        0.99				                    |
+|15.png		|	0.99		 |	0.99				    |        0.99				                    |
+|16.png		|	0.01		 |	0.997				    |        0.81				                    |
+|17.png		|	0.99		 |	0.99				    |        0.99				                    |
+|18.png		|	0.99		 |	0.99				    |        0.99				                    |
+|19.png		|	0.99		 |	0.98				    |        0.99				                    |
+|20.png		|	0.97		 |	0.99				    |        0.99				                    |
+|21.png		|	0.023		 |	0.99				    |        0.14				                    |
+|22.png		|	0.99		 |	0.99				    |        0.99				                    |
+|24.png		|	0			 |   1 				        |        1				                        |
+|25.png		|	0.94		 |	0.99				    |        0.94				                    |
+|26.png		|	0.92		 |	0.75				    |        0.98				                    |
+|27.png		|	0.99		 |	0.84				    |        0.95				                    |
+|28.png		|	0.96		 |	0.59				    |        0.88				                    |				
+|29.png		|	0.90		 |	0.99				    |        0.94				                    |
