@@ -1,7 +1,7 @@
 # Sea Segmentation - A Bag Of Words approach
 ## Introduction
 This project was developed to solve an Univeristy assignmed which was about Boat Detection/tracking and sea segmentation.
-In particular in this part of the code it will be developped the sea segmentation part using C++ as codebase with the OpenCV library.
+In particular in this part of the code it will be developed the sea segmentation part using C++ as codebase with the OpenCV library.
 
 ## The assignment
 Traffic analysis methods on road scenes are widely used nowadays, however similar methods can be used to analyze boat traffic in the sea.
@@ -44,18 +44,18 @@ What was more insteresting to test is whether it was possible to achieve great r
 The intuition about the implemented approach is based on a two phases algorithm: the first step consists in having preprocessing phase leading to a great initial segmentation of the image, and the second step involves the classification of each segment found in the previous step.
 In the end, what one should obtain is a binary mask highlighting pixels belonging to the sea.
 
-This stuff is really cool, but are we sure that is going to actually work? According to this paper: https://r-libre.teluq.ca/982/1/articleiwatchlife.pdf ,this algorithm can work.
+This stuff is really cool, but are we sure that this is going to actually work? According to this paper: https://r-libre.teluq.ca/982/1/articleiwatchlife.pdf ,this approach should do the job.
 
 ## Phase 1: Pre-segmentation of the scene
 ### Meanshift
 As a first trial, the meanshift algorithm was implemented as it was the only algorithm we studied during the course capable of finding clusters (segments) with no bias whatsoever regarding their shape. 
 Unfortunately it was really unintuitive to find a set of hyperparameters for this algorithm capable of achieving great results with decent execution time.
 
-In summary:  Meanshift actually **sucks!** (i don't have a NASA computer, and some images required several minutes to get processed)
+TLDR:  Meanshift actually **sucks!** (i don't have a NASA computer, and some images required several minutes to get processed)
 
 ### Graph Segmentation 
 Graph Segmentation techniques, on the other hand, are fast and work like magic. 
-This code uses the original implementation of the Felzenszwalb-Huttenlocher graph segmentor.
+This code uses the original implementation of the Felzenszwalb-Huttenlocher graph segmentor which can be found on the paper cited previously.
 This algorithm relies to an underlying weighted graph , where each node corresponds to a
 pixel and the edges weighted by some measure of dissimilarity (such as the intensity) connect
 neighbouring pixels. With this framework, a segmentation is a partition the original Graph and, therefore, is defined by a set of edges of the original graph. 
@@ -67,8 +67,9 @@ this algorithm has a time complexity _O (n log(n) )_, where n is the number of p
 
 ### The mask extraction process
 
-One could now think that each assigned to a random corrensponding to a number within the interval \[1, \# segments \], however each segment is identified by an number (which in some cases is really high) corresponding to the merged intensities of two similar pixels.
-Therefore, to isolate each segment with binary masks, it was necessary to process the segmentation resut by isolating each individual segment.
+One could now think that each pixel is assigned to a number $i \in \left{1,\ldots,\text{\# of segments}\right}$ corresponding to the segment that pixel belongs to, however each segment is identified by an number (which in some cases is really high) corresponding to the merged intensities of two similar pixels.
+Therefore it was not straitforward the grouping of the pixels into the segments since we couldn't predict the number a pixel will be assigned to. 
+Thus, to isolate each segment with binary masks, it was necessary to process the segmentation resut by isolating each individual segment.
 The code relies on an unordered map implemented in C++ used in the following function: 
 
     /**
@@ -119,9 +120,15 @@ The code relies on an unordered map implemented in C++ used in the following fun
       }
       return output;
     }
+    
+### What is this code achieving 
+In essence the code above scans the entire result of the segmentation process (which is an image having each pixel assigned to a number corresponding to the merged intensities) and by means of an hash map it groups the pixels having the same value ( uses as the key of the map the value of the pixels, if two or more pixels have the same value they will be concatenated in the same list). 
+Finally the hash map is traversed to create the binary mask for each segment, it might seem laborious, maybe it could be improved, but it does the job.
 
 ### Bag of Visual Words
 Once that the individual segment masks are extracted, we can classify each segment by using a Bag Of Visual Words approach which performs classification by obtaining an histogram representation of the SIFT features extracted in each individual segment.
 In particular, for the dictionary it has been used the K-Means clustering algorithm with 200 clusters, and for the classification an SVM linear classifiers (as SIFT descriptors lie in a 128th dimentional space, it shouldn't be a problem to find a separating hyperplane).
+
+Dataset Used to identify the Sea: MASATI.
 
 ![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/tree/main/markdown/images/20_sem_seg.png)
