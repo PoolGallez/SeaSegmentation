@@ -67,7 +67,7 @@ this algorithm has a time complexity _O (n log(n) )_, where n is the number of p
 
 ### The mask extraction process
 
-One could now think that each pixel is assigned to a number $i \in \left{1,\ldots,\text{\# of segments}\right}$ corresponding to the segment that pixel belongs to, however each segment is identified by an number (which in some cases is really high) corresponding to the merged intensities of two similar pixels.
+One could now think that each pixel is assigned to a number i = 1,...,\# of segments corresponding to the segment that pixel belongs to, however each segment is identified by an number (which in some cases is really high) corresponding to the merged intensities of two similar pixels.
 Therefore it was not straitforward the grouping of the pixels into the segments since we couldn't predict the number a pixel will be assigned to. 
 Thus, to isolate each segment with binary masks, it was necessary to process the segmentation resut by isolating each individual segment.
 The code relies on an unordered map implemented in C++ used in the following function: 
