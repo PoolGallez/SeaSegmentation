@@ -62,8 +62,9 @@ neighbouring pixels. With this framework, a segmentation is a partition the orig
 The dissimilarity criterion used in the paper can be proved to guarantee neither too coarse nor too fine results, and
 this algorithm has a time complexity _O (n log(n) )_, where n is the number of pixel, making it possible to be used with videos.
 
-![Input Image](https://github.com/PoolGallez/SeaSegmentastion/blob/main/markdown/images/20.png?raw=true "Input Image")
-![Segmented Image](https://github.com/PoolGallez/SeaSegmentastion/blob/main/markdown/images/20_seg.png?raw=true "Segmentation Result")
+![Input Image](https://github.com/PoolGallez/SeaSegmentation/blob/main/markdown/images/20.png?raw=true "Input Image")
+![Segmented Image](https://github.com/PoolGallez/SeaSegmentation/blob/main/markdown/images/20_seg.png?raw=true "Segmentation Result")
+
 
 
 ### The mask extraction process
@@ -132,7 +133,7 @@ In particular, for the dictionary it has been used the K-Means clustering algori
 
 Dataset Used to identify the Sea: MASATI.
 
-![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentastion/blob/main/markdown/images/20_sem_seg.png?raw=true "Result of the semantic segmentation")
+![Semantic Segmentation Result](https://github.com/PoolGallez/SeaSegmentation/blob/main/markdown/images/20_sem_seg.png?raw=true "Result of the semantic segmentation")
 
 ## Performance achieved
 
